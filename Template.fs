@@ -52,6 +52,23 @@ let postCard title image name order =
         a [A.href $"/posts/{name}"] [b [A.style "max-width: 70%"] [Text.raw title]]
     ]
 
+let posts = 
+    [
+        postCard "Building a Lambda Calculus Interpreter with .NET Interop" "/posts/dotnet square.jpg" "dotnet_interp" 1
+        postCard "A RISCV Implementation of the Tiger Compiler" "/posts/tigerhead.jpg" "tiger_compiler" 2
+        postCard "Modern Languages to Carry the Flame of Standard ML" "/posts/poly.jpg" "modern_sml" 3
+        postCard "Text Prediction Using Gzip and K-Nearest Neighbors" "/posts/knn.png" "gzip_knn" 4
+    ]
+
+let links =
+    [
+        a [A.href "https://keleshev.com/composable-error-handling-in-ocaml"] [Text.raw "Composable Error Handling in OCaml"]; br []
+        a [A.href "https://www.falcoframework.com/"] [Text.raw "F# Falco"]; br []
+        a [A.href "https://hypermedia.systems/book/contents/"] [Text.raw "hypermedia.systems"]; br []
+        a [A.href "https://sergeytihon.com/fsharp-weekly/"] [Text.raw "Sergey Tihon's Blog"]; br []
+    ]
+    
+
 
 let homeContent = 
     [
@@ -64,47 +81,31 @@ let homeContent =
         br []
         section [] [small [] [Text.raw "what i've been working on"]]
         hr []
-
-        postCard "Building a Lambda Calculus Interpreter with .NET Interop" "/posts/dotnet square.jpg" "dotnet_interp" 1
-        postCard "A RISCV Implementation of the Tiger Compiler" "/posts/tigerhead.jpg" "tiger_compiler" 2
-        postCard "Modern Languages to Carry the Flame of Standard ML" "/posts/poly.jpg" "modern_sml" 3
-        postCard "Text Prediction Using Gzip and K-Nearest Neighbors" "/posts/knn.png" "gzip_knn" 4
-
-
+    ] @ posts @
+    [
         br []
         br []
         section [] [small [] [Text.raw "some links"]]
         hr []
-        a [A.href "https://keleshev.com/composable-error-handling-in-ocaml"] [Text.raw "Composable Error Handling in OCaml"]; br []
-        a [A.href "https://www.falcoframework.com/"] [Text.raw "F# Falco"]; br []
-        a [A.href "https://hypermedia.systems/book/contents/"] [Text.raw "hypermedia.systems"]; br []
-        a [A.href "https://sergeytihon.com/fsharp-weekly/"] [Text.raw "Sergey Tihon's Blog"]; br []
-
-    ]
+    ] @ links
 
 let postsContent =
-    div [] [
-        section [] [
-            h4 [] [Text.raw "What I've Been Up To"]
-        ]
-        hr []
-        postCard "Building a Lambda Calculus Interpreter with .NET Interop" "/posts/dotnet square.jpg" "dotnet_interp" 1
-        postCard "A RISCV Implementation of the Tiger Compiler" "/posts/tigerhead.jpg" "tiger_compiler" 2
-        postCard "Modern Languages to Carry the Flame of Standard ML" "/posts/poly.jpg" "modern_sml" 3
-        postCard "Text Prediction Using Gzip and K-Nearest Neighbors" "/posts/knn.png" "gzip_knn" 4
-    ]
+    div [] <|
+        [
+            section [] [
+                h4 [] [Text.raw "What I've Been Up To"]
+            ]
+            hr []
+        ] @ posts
     
 let linksContent = 
-    div [] [
-        section [] [
-            h4 [] [Text.raw "Some links I've found interesting..."]
-        ]
-        hr []
-        a [A.href "https://keleshev.com/composable-error-handling-in-ocaml"] [Text.raw "Composable Error Handling in OCaml"]; br []
-        a [A.href "https://www.falcoframework.com/"] [Text.raw "F# Falco"]; br []
-        a [A.href "https://hypermedia.systems/book/contents/"] [Text.raw "hypermedia.systems"]; br []
-        a [A.href "https://sergeytihon.com/fsharp-weekly/"] [Text.raw "Sergey Tihon's Blog"]; br []
-    ]
+    div [] <|
+        [
+            section [] [
+                h4 [] [Text.raw "Some links I've found interesting..."]
+            ]
+            hr []
+        ] @ links
 
 let aboutContent = 
     div [] [
