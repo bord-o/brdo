@@ -38,8 +38,6 @@ let findPostHandler: HttpHandler =
         let post = posts |> List.find (fun p -> p.name = name + ".html")
         Response.ofHtml (Template.mainTemplate [ TextNode(post.html) ]) ctx)
 
-// Util.convertMarkdown() // This should be run from the F# interpreter prior to publish
-
 webHost [||] {
 
     use_static_files

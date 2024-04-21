@@ -8,7 +8,7 @@ module A = Falco.Markup.Attr
 
 let previewAmount = 3
 
-let mainTemplate mainContent =
+let mainTemplate (mainContent: XmlNode list) =
     html
         []
         [ head
@@ -80,18 +80,16 @@ let posts =
       postCard "Text Prediction Using Gzip and K-Nearest Neighbors" "/posts/knn.png" "gzip_knn" 4 ]
 
 
-let linkItem title link = 
-    (a [A.href link] [ Text.raw title]) :: [br []]
+let linkItem title link =
+    (a [ A.href link ] [ Text.raw title ]) :: [ br [] ]
 
-let links = 
-    [
-        linkItem "Composable Error Handling in OCaml" "https://keleshev.com/composable-error-handling-in-ocaml"
-        linkItem "F# Falco" "https://www.falcoframework.com/"
-        linkItem "hypermedia.systems" "https://hypermedia.systems/book/contents/"  
-        linkItem "Sergey Tihon's Blog" "https://sergeytihon.com/fsharp-weekly/" 
-    ]
+let links =
+    [ linkItem "Composable Error Handling in OCaml" "https://keleshev.com/composable-error-handling-in-ocaml"
+      linkItem "F# Falco" "https://www.falcoframework.com/"
+      linkItem "hypermedia.systems" "https://hypermedia.systems/book/contents/"
+      linkItem "Sergey Tihon's Blog" "https://sergeytihon.com/fsharp-weekly/" ]
 
-   
+
 let homeContent =
     [ br []
       br []
@@ -103,27 +101,23 @@ let homeContent =
       br []
       section [] [ small [] [ Text.raw "what i've been working on" ] ]
       hr [] ]
-    @ List.take previewAmount posts @ 
-    [
-        a [A.style "float:right"; A.href "/posts"] [small [] [Text.raw "more"]]
-    ]
+    @ List.take previewAmount posts
+    @ [ a [ A.style "float:right"; A.href "/posts" ] [ small [] [ Text.raw "more" ] ] ]
 
     @ [ br []; br []; section [] [ small [] [ Text.raw "some links" ] ]; hr [] ]
-    @ (List.take previewAmount links |> List.concat) @ 
-    [
-        a [A.style "float:right";A.href "/links"] [small [] [Text.raw "more"]]
-    ]
-        
+    @ (List.take previewAmount links |> List.concat)
+    @ [ a [ A.style "float:right"; A.href "/links" ] [ small [] [ Text.raw "more" ] ] ]
+
 
 let postsContent =
     div []
-    <| [ section [] [ h4 [] [ Text.raw "What I've been up to..." ] ]; hr [] ] @ posts 
-    
+    <| [ section [] [ h4 [] [ Text.raw "What I've been up to..." ] ]; hr [] ] @ posts
+
 let linksContent =
     div []
     <| [ section [] [ h4 [] [ Text.raw "Some links I've found interesting..." ] ]
          hr [] ]
-       @ (List.concat links) 
+       @ (List.concat links)
 
 let aboutContent =
     div
